@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GOODBYE = exports.PLAY_MORE = exports.PLAY_AGAIN = exports.DRAW = exports.LOSE = exports.WIN = exports.CHOOSE = void 0;
+const CHOOSE = "Please choose rock, paper or scissors:";
+exports.CHOOSE = CHOOSE;
+const WIN = "You won!";
+exports.WIN = WIN;
+const LOSE = "You lost!";
+exports.LOSE = LOSE;
+const DRAW = "Draw!";
+exports.DRAW = DRAW;
+const PLAY_AGAIN = "Want to play more? Press (y) for yes, (n) for no:";
+exports.PLAY_AGAIN = PLAY_AGAIN;
+const PLAY_MORE = "Let's play one more game :)";
+exports.PLAY_MORE = PLAY_MORE;
+const GOODBYE = "See you next time!";
+exports.GOODBYE = GOODBYE;

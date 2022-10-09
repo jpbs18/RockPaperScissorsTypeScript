@@ -1,59 +1,49 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Variables_1 = require("./Utilities/Variables");
+const Enum_1 = require("./Utilities/Enum");
 const prompt = require("prompt-sync")({ sigint:true })
-
 let playerScore = 0;
 let computerScore = 0;
-const CHOOSE = "Please choose rock, paper or scissors:";
-const WIN = "You won!";
-const LOSE = "You lost!";
-const DRAW = "Draw!";
-const PLAY_AGAIN = "Want to play more? Press (y) for yes, (n) for no:";
-const PLAY_MORE = "Let's play one more game :)";
-const GOODBYE = "See you next time!";
-var Move;
-(function (Move) {
-    Move["ROCK"] = "ROCK";
-    Move["PAPER"] = "PAPER";
-    Move["SCISSORS"] = "SCISSORS";
-})(Move || (Move = {}));
 const computerChoice = (array) => array[Math.floor(Math.random() * 3)];
 const playerChoice = () => {
     var _a;
-    let playerMove = (_a = prompt(CHOOSE)) === null || _a === void 0 ? void 0 : _a.toLowerCase();
+    let playerMove = (_a = prompt(Variables_1.CHOOSE)) === null || _a === void 0 ? void 0 : _a.toLowerCase();
     switch (playerMove) {
-        case "rock": return Move.ROCK;
-        case "paper": return Move.PAPER;
-        case "scissors": return Move.SCISSORS;
+        case "rock": return Enum_1.Move.ROCK;
+        case "paper": return Enum_1.Move.PAPER;
+        case "scissors": return Enum_1.Move.SCISSORS;
         default: return playerChoice();
     }
 };
 const checkWinner = (computer, player) => {
     if (computer == player) {
-        return DRAW;
+        return Variables_1.DRAW;
     }
-    if (player == Move.ROCK && computer == Move.SCISSORS ||
-        player == Move.PAPER && computer == Move.ROCK ||
-        player == Move.SCISSORS && computer == Move.PAPER) {
+    if (player == Enum_1.Move.ROCK && computer == Enum_1.Move.SCISSORS ||
+        player == Enum_1.Move.PAPER && computer == Enum_1.Move.ROCK ||
+        player == Enum_1.Move.SCISSORS && computer == Enum_1.Move.PAPER) {
         playerScore++;
-        return WIN;
+        return Variables_1.WIN;
     }
     computerScore++;
-    return LOSE;
+    return Variables_1.LOSE;
 };
 const anotherGame = () => {
     var _a;
-    let answer = (_a = prompt(PLAY_AGAIN)) === null || _a === void 0 ? void 0 : _a.toLowerCase();
+    let answer = (_a = prompt(Variables_1.PLAY_AGAIN)) === null || _a === void 0 ? void 0 : _a.toLowerCase();
     switch (answer) {
         case "y":
-            console.log(PLAY_MORE);
+            console.log(Variables_1.PLAY_MORE);
             return playGame();
         case "n":
-            console.log(GOODBYE);
+            console.log(Variables_1.GOODBYE);
             return `Your score: ${playerScore}  Computer score: ${computerScore}`;
         default: return anotherGame();
     }
 };
 const playGame = () => {
-    console.log(checkWinner(computerChoice(Object.values(Move)), playerChoice()).concat("\n"));
+    console.log(checkWinner(computerChoice(Object.values(Enum_1.Move)), playerChoice()).concat("\n"));
     return anotherGame();
 };
 console.log(playGame());
